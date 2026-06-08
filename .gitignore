@@ -1,0 +1,10 @@
+# KiCad local history/backups
+schema/.history/
+**/.history/
+
+# KiCad lock files
+*.lck
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
