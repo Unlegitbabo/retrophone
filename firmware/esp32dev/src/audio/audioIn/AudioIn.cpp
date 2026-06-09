@@ -1,10 +1,10 @@
 #include <Arduino.h>
 
+#include "Debug.h"
 #include "Pins.h"
 #include "audio/audioIn/AudioIn.h"
 
 static int audioInRaw = 0;
-static unsigned long lastPrintTime = 0;
 
 void setupAudioIn() {
   pinMode(PIN_MIC_ADC, INPUT);
@@ -16,6 +16,8 @@ void setupAudioIn() {
 void updateAudioIn() {
   audioInRaw = analogRead(PIN_MIC_ADC);
 
+#if DEBUG
+  static unsigned long lastPrintTime = 0;
   unsigned long now = millis();
 
   if (now - lastPrintTime >= 50) {
@@ -27,6 +29,7 @@ void updateAudioIn() {
 
     lastPrintTime = now;
   }
+#endif
 }
 
 int getAudioInRaw() {

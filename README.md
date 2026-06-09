@@ -8,7 +8,7 @@ Das Ziel ist es, den originalen Look, die Mechanik und die Haptik zu erhalten, w
 für Bluetooth, WLAN, Sprachsteuerung und Smart-Home-Integration sorgt.
 
 Das Telefon funktioniert **eigenständig**, kann aber durch einen externen Raspberry Pi massiv erweitert werden.
-d
+
 ---
 
 ## 2. Feature-Set

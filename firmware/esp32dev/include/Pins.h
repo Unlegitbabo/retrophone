@@ -9,11 +9,3 @@ constexpr int PIN_LED = 2;
 #define I2S_DIN 27
 
 #define PIN_MIC_ADC 34
-
-
-
-
-//constexpr int PHONE_PIN_1;
-//constexpr int PHONE_PIN_2;
-//constexpr int PHONE_PIN_2;
-//constexpr int PHONE_PIN_3;

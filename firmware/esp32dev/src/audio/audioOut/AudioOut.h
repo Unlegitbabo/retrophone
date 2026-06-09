@@ -10,9 +10,6 @@ void playTestTone();
 void stopAudioOut();
 void playToneSequence();
 
-void setupAudioFiles();
-void playWavFile(const char* path);
-
 void startMelody(const MelodyNote* melody, int length);
 void updateMelody();
 bool isMelodyPlaying();

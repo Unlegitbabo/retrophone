@@ -28,8 +28,6 @@ enum PhoneState {
 };
 
 static PhoneState phoneState = PHONE_INIT;
-static String currentNumber = "";
-
 
 static bool initStarted = false;
 

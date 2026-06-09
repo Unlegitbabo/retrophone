@@ -3,7 +3,6 @@
 #include "driver/i2s.h"
 #include <math.h>
 #include "Pins.h"
-#include <SPIFFS.h>
 #include "AudioOut.h"
 
 #define I2S_PORT I2S_NUM_0
@@ -21,15 +20,6 @@ static SoundProfile currentSoundProfile = SOUND_SINE;
 
 
 // ----------------- SETUP ----------------- //
-void setupAudioFiles() {
-  if (!SPIFFS.begin(true)) {
-    Serial.println("SPIFFS mount failed");
-    return;
-  }
-
-  Serial.println("SPIFFS ready");
-}
-
 void setupAudioOut() {
   i2s_config_t i2sConfig = {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_TX),
@@ -78,9 +68,6 @@ void setupAudioOut() {
 
   Serial.print("I2S DIN: ");
   Serial.println(I2S_DIN);
-
-
-  setupAudioFiles();
 }
 // ----------------- Funktion ----------------- //
 
@@ -209,51 +196,6 @@ void playToneSequence() {
   }
 
   writeToneBlock(sequence[stepIndex].frequency, 12000);
-}
-
-
-void playWavFile(const char* path) {
-  File file = SPIFFS.open(path, "r");
-
-  if (!file) {
-    Serial.print("WAV file not found: ");
-    Serial.println(path);
-    return;
-  }
-
-  Serial.print("Playing WAV: ");
-  Serial.println(path);
-
-  file.seek(44);
-
-  const int samplesPerBlock = 128;
-  int16_t monoSamples[samplesPerBlock];
-  int16_t stereoSamples[samplesPerBlock * 2];
-
-  while (file.available()) {
-    int bytesRead = file.read((uint8_t*)monoSamples, sizeof(monoSamples));
-    int sampleCount = bytesRead / sizeof(int16_t);
-
-    for (int i = 0; i < sampleCount; i++) {
-      int16_t sample = monoSamples[i];
-
-      stereoSamples[i * 2] = sample;
-      stereoSamples[i * 2 + 1] = sample;
-    }
-
-    size_t bytesWritten = 0;
-    i2s_write(
-      I2S_PORT,
-      stereoSamples,
-      sampleCount * 2 * sizeof(int16_t),
-      &bytesWritten,
-      portMAX_DELAY
-    );
-  }
-
-  file.close();
-
-  Serial.println("WAV done");
 }
 
 

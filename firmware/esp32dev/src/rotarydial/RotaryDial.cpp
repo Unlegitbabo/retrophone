@@ -14,11 +14,6 @@ static bool CreatDialNumber = false;
 static bool DialNumberCompleted = false;
 
 
-static int PhoneNumber;
-static bool CreatPhoneNumberTrue = false;
-static bool PhoneNumberCompleted = false;
-
-
 static bool ReadActiveLastState = false;
 static unsigned long lastReadActiveTime = 0;
 static unsigned long lastCountTime = 0;
@@ -102,9 +97,6 @@ void readRotaryDial() {
         unsigned long DebugMilis = millis();
 
         if (DebugMilis - lastDebugTime >= 500) {
-            DEBUG_PRINT("Phone Number: ");
-            DEBUG_PRINTLN(PhoneNumber);
-
             DEBUG_PRINT("Dial Number: ");
             DEBUG_PRINTLN(InternDigitNumber);
 
@@ -127,25 +119,10 @@ bool isDialNumberReady(){
 
 
 int getDialNumber(){
-    
+
     if (isDialNumberReady()) {
     DialNumberCompleted = false;
     return InternDigitNumber;
     }
 return -1;
-}
-
-bool isPhoneNumberReady(){
-    if (PhoneNumberCompleted) {
-        return true;
-    }
-    return false;
-}
-
-int getPhoneNumber(){
-    if (isPhoneNumberReady()) {
-        PhoneNumberCompleted = false;
-        return PhoneNumber;
-    }
-    return -1;
 }

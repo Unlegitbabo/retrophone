@@ -5,19 +5,6 @@
 #include "phone/Phone.h"
 
 
-
-
-#define TEST_PIN 18
-
-
-
-
-
-
-
-
-
-
 // ----------------- Setup ----------------- //
 
 void setupPins();
@@ -29,15 +16,11 @@ void setup() {
   
   setupPins();
   setupPhone();
-
-  
-  digitalWrite(TEST_PIN, HIGH);
 }
 
 void setupPins() {
   DEBUG_PRINTLN("System startet");
   pinMode(PIN_LED, OUTPUT);
-  pinMode(TEST_PIN, OUTPUT);
 }
 
 // ----------------- Main ----------------- //
