@@ -6,6 +6,7 @@
 #include "audio/audioIn/AudioIn.h"
 #include "rotarydial/RotaryDial.h"
 #include "audio/melodies/melodies.h"
+#include "audio/bluetooth/BluetoothAudio.h"
 
 enum PhoneState {
   PHONE_INIT,
@@ -24,6 +25,7 @@ enum PhoneState {
 
   PHONE_DIALING,
   PHONE_PLAYING,
+  PHONE_BLUETOOTH,
   PHONE_ERROR
 };
 
@@ -73,6 +75,11 @@ void updatePhone() {
 static void changePhoneState(PhoneState newState) {
   if (phoneState == newState) {
     return;
+  }
+
+  // Leaving Bluetooth mode: hand the I2S peripheral back to local audio.
+  if (phoneState == PHONE_BLUETOOTH && newState != PHONE_BLUETOOTH) {
+    exitBluetoothMode();
   }
 
   phoneState = newState;
@@ -202,7 +209,7 @@ static void updatePhoneState() {
 
     case PHONE_9:
       printStateOnce("PHONE_9");
-      changePhoneState(PHONE_IDLE);
+      changePhoneState(PHONE_BLUETOOTH);
       break;
 
     case PHONE_DIALING:
@@ -212,6 +219,16 @@ static void updatePhoneState() {
 
     case PHONE_PLAYING:
       printStateOnce("PHONE_PLAYING");
+      break;
+
+    case PHONE_BLUETOOTH:
+      printStateOnce("PHONE_BLUETOOTH");
+      // Enter once; stay until the user dials any digit, which triggers
+      // changePhoneState() and tears Bluetooth back down.
+      if (!isBluetoothActive()) {
+        setMelody(MELODY_NONE, false);
+        enterBluetoothMode();
+      }
       break;
 
     case PHONE_ERROR:
