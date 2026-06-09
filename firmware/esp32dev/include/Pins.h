@@ -2,6 +2,7 @@
 
 constexpr int PIN_DIAL_NUMBER = 32;
 constexpr int PIN_DIAL_ACTIVE = 33;
+constexpr int PIN_HOOK = 19;  // hook-switch: handset on/off the cradle
 constexpr int PIN_LED = 2;
 
 #define I2S_BCLK 26

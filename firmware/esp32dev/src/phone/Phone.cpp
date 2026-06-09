@@ -5,6 +5,7 @@
 #include "audio/audioOut/AudioOut.h"
 #include "audio/audioIn/AudioIn.h"
 #include "rotarydial/RotaryDial.h"
+#include "hookswitch/HookSwitch.h"
 #include "audio/melodies/melodies.h"
 #include "audio/bluetooth/BluetoothAudio.h"
 
@@ -46,9 +47,23 @@ void setupPhone() {
   setupAudioOut();
   setupAudioIn();
   setupRotaryDial();
+  setupHookSwitch();
 }
 
 void updatePhone() {
+  updateHookSwitch();
+
+  if (hookJustLifted()) {
+    // Off-hook: ready to dial / answer. Call handling (HFP) hooks in here later.
+    Serial.println("Handset lifted (off-hook)");
+  }
+
+  if (hookJustPlaced()) {
+    // On-hook: hang up. Returns to idle and tears down Bluetooth / stops audio.
+    Serial.println("Handset replaced (on-hook)");
+    changePhoneState(PHONE_IDLE);
+  }
+
   readRotaryDial();
 
   if (isDialNumberReady()) {
