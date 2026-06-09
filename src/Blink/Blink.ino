@@ -6,9 +6,9 @@ BluetoothA2DPSink a2dp_sink(i2s);
 
 void setup() {
     auto cfg = i2s.defaultConfig();
-    cfg.pin_bck = 27;
-    cfg.pin_ws = 26;
-    cfg.pin_data = 25;
+    cfg.pin_bck = 26;
+    cfg.pin_ws = 25;
+    cfg.pin_data = 27;
     i2s.begin(cfg);
 
     a2dp_sink.start("MyMusic");
