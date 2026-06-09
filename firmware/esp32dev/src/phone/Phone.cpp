@@ -2,7 +2,8 @@
 
 #include "Pins.h"
 #include "phone/Phone.h"
-#include "audio/AudioOut.h"
+#include "audio/audioOut/AudioOut.h"
+#include "audio/audioIn/AudioIn.h"
 #include "rotarydial/RotaryDial.h"
 #include "audio/melodies/melodies.h"
 
@@ -43,6 +44,7 @@ static void printStateOnce(const char* stateName);
 
 void setupPhone() {
   setupAudioOut();
+  setupAudioIn();
   setupRotaryDial();
 }
 
@@ -62,9 +64,11 @@ void updatePhone() {
     }
   }
 
-  
+
   updateMelodyPlayer();
   updatePhoneState();
+  
+  updateAudioIn();
  
 }
 

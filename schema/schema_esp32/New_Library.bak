@@ -145,6 +145,24 @@
 				)
 			)
 			(pin bidirectional line
+				(at -11.43 1.27 0)
+				(length 2.54)
+				(name "GPIO27"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "27"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
 				(at -11.43 -6.35 0)
 				(length 2.54)
 				(name "GND"
@@ -155,6 +173,24 @@
 					)
 				)
 				(number "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin input line
+				(at -8.89 16.51 180)
+				(length 2.54)
+				(name "GPIO_34"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "34"
 					(effects
 						(font
 							(size 1.27 1.27)

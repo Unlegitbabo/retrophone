@@ -72,6 +72,24 @@
 					)
 				)
 			)
+			(pin input line
+				(at -11.43 16.51 0)
+				(length 2.54)
+				(name "GPIO_34"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "34"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
 			(pin bidirectional line
 				(at -11.43 11.43 0)
 				(length 2.54)

@@ -4,7 +4,7 @@
 #include <math.h>
 #include "Pins.h"
 #include <SPIFFS.h>
-#include "audio/AudioOut.h"
+#include "AudioOut.h"
 
 #define I2S_PORT I2S_NUM_0
 
@@ -87,7 +87,7 @@ void setupAudioOut() {
 void playTestTone() {
   const int sampleRate = 44100;
   const int frequency = 440;
-  const int amplitude = 12000;
+  const int amplitude = 32767;
   const int samplesPerBlock = 128;
 
   static float phase = 0.0;
@@ -295,7 +295,7 @@ void updateMelody() {
     note = currentMelody[currentMelodyIndex];
   }
 
-  writeToneBlock(note.frequency, 12000);
+  writeToneBlock(note.frequency, 32767);
 }
 
 void stopMelody() {

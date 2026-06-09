@@ -1,5 +1,5 @@
 #include "audio/melodies/melodies.h"
-#include "audio/AudioOut.h"
+#include "audio/audioOut/AudioOut.h"
 
 // ------------- Note Frequencies -------------
 
