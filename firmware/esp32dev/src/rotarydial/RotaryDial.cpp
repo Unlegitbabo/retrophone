@@ -5,6 +5,8 @@
 
 
 
+static bool rotaryDialDebug = false;
+
 
 static int InternDigitCounter = 0;
 static int InternDigitNumber = 0;
@@ -25,7 +27,7 @@ static int NumberLastState = HIGH;
 
 
 
-
+// --------------- SETUP --------------- //
 void setupRotaryDial() {
   pinMode(PIN_DIAL_NUMBER, INPUT_PULLUP);
   pinMode(PIN_DIAL_ACTIVE, INPUT_PULLUP);
@@ -38,6 +40,10 @@ void setupRotaryDial() {
 
 
 
+// --------------- Function --------------- //
+void setRotaryDialDebug(bool enabled) {
+  rotaryDialDebug = enabled;
+}
 
 void readRotaryDial() {
     

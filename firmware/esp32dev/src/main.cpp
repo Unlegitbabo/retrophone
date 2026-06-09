@@ -1,7 +1,8 @@
 #include <Arduino.h>
-#include "RotaryDial.h"
+#include "rotarydial/RotaryDial.h"
 #include "Debug.h"
 #include "Pins.h"
+#include "phone/Phone.h"
 
 
 
@@ -25,8 +26,11 @@ void blinkLed(int dauer);
 
 void setup() {
   Serial.begin(115200);
-  setupRotaryDial();
+  
   setupPins();
+  setupPhone();
+
+  
   digitalWrite(TEST_PIN, HIGH);
 }
 
@@ -40,24 +44,11 @@ void setupPins() {
 
 void loop() {
   blinkLed(500);
-  readRotaryDial();
+  
+  updatePhone();
 
 
-  if (isDialNumberReady()) {
-    int DialNumber = getDialNumber();
 
-    Serial.println("New Dial Number is:");
-    Serial.println(DialNumber);
-  }
-
-  if (isPhoneNumberReady()){
-    int PhoneNumber = getPhoneNumber();
-    
-    Serial.println("New Phone Nummber is:");
-    Serial.println(PhoneNumber);
-  }
-
-  //Serial.println(PhoneNumber);
 }
 
 
